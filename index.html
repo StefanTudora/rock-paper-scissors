@@ -3,11 +3,41 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <!-- script src="rps-game.js"></script -->
+  <link rel="stylesheet" href="style.css">
+  <title>RPS</title>
 </head>
 <body>
+  <header class="presentation">
+    <h2>Welcome to Rock-Paper-Scissors</h2>
+  </header>
 
-  <script src="rps-game.js"></script>
+  <section class="main-content">
+    <div class="user-interactions">
+      <h2>Input your choice while the devilish AI does the same</h2>
+      <div class="choices">
+        <button id="rock">Rock</button>
+        <button id="paper">Paper</button>
+        <button id="scissors">Scissors</button>
+      </div>
+    </div>
+    <div class="scoreboard">
+      <table>
+        <tr class="players">
+          <td>You</td>
+          <td>Devilish AI</td>
+        </tr>
+        <tr class="results">
+          <td>0</td>
+          <td>0</td>
+        </tr>
+      </table>
+    </div>
+  </section>
+
+  <footer>
+    <h5>Copyright @ Odin Project 2025</h5>
+  </footer>
 
 </body>
 </html>
