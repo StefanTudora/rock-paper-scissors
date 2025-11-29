@@ -1,12 +1,3 @@
-
-/* General style */
-
-body {
-    display: flex;
-    flex-direction: column;;
-    flex: auto;
-}
-
 /* Header Style */
 
 header {
@@ -30,9 +21,29 @@ header {
     padding: 30px;
 }
 
-.main-content.choices {
+.user-interactions {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
+}
+
+.choices {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px
+}
+
+.choices button {
+    border-radius: 10px;
+}
+
+.choices button:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.6);
+}
+
+.choices img {
+    width: 100px;
+    height: 100px;
 }
 
 .user-interactions {
@@ -42,11 +53,32 @@ header {
     justify-content: center;
 }
 
+/* Scoreboard Style */
+
+table {
+    border: 2px;
+    border-style: solid;
+    font-size: 40px;
+    text-align: center;
+}
+
+table td {
+    border: 2px;
+    border-style: solid;
+    width: 200px;
+}
+
+td img {
+    width: 150px;
+    height: 150px;
+}
+
 /* Footer Style */
 
 footer {
     display: flex;
-    justify-items: center;
+    justify-content: center;
+    align-items: center;
     background-color: #7c8f66;
     color: white;
 }
