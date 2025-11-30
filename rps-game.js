@@ -10,76 +10,60 @@ function playRound(humanChoice, computerChoice) {
         (humanChoice === "scissors" && computerChoice === "paper")) {
         console.log(`You win! ${humanChoice} beats ${computerChoice}.`);
         // Update the player score
-        updateScoreForPlayer(document.getElementById('player'));
+        updateScoreForPlayer(document.getElementById("player"));
         return true;
     } else {
         console.log(`You lose! ${computerChoice} beats ${humanChoice}.`)
         // Update Seymours score
-        updateScoreForPlayer(document.getElementById('cpu'));
+        updateScoreForPlayer(document.getElementById("cpu"));
         return false;
     }
 }
 
-// Function used to attach the needed listeners
 function attachListeners() {
-    let choice = 0;
+    let idx = 0;
     let choicelist = ["rock", "paper", "scissors"];
     // Attach listener to the buttons
     const buttons = document.querySelectorAll("button");
-    buttons.forEach("click", e => {
-        selectAndPlay(choicelist[choice ++]);
-    })
+    buttons.forEach(button => {
+        const choice = choicelist[idx++];
+        button.addEventListener("click", () => {
+            playWithChoice(choice);
+        });
+    });
 }
 
-function selectAndPlay(choice) {
+function playWithChoice(choice) {
     playRound(choice, getComputerChoice());
 }
 
 function updateScoreForPlayer(elem) {
-    let currentScore = Number(elem.innerText);
-    elem.textContent = (++ currentScore).toString();
-    // if (currentScore == 5) {
-    //     // Declare the winner
-        
-    // }
+    const winner = elem.getAttribute('id');
+    const playerScoreNodeID = winner + "-score";
+    const scoreNode = document.getElementById(playerScoreNodeID);
+    let currentScore = Number(scoreNode.textContent);
+    scoreNode.textContent = (++currentScore).toString();
+    if (currentScore == 5) {
+        // Declare the winner
+        alert(`Round over -> the winner is ${winner}!`)
+        // Clear round
+        clearGame();
+    }
 }
 
-// Function used in getting the user choice from the a prompt --> no longer needed since we rely on listeners now
-// function getHumanChoice() {
-//     let choice = prompt("Enter your choice (rock, paper, or scissors):").toLowerCase();
-//     const validChoices = ["rock", "paper", "scissors"];
-//     while (!validChoices.includes(choice)) {
-//         choice = prompt("Invalid choice. Please enter rock, paper, or scissors:").toLowerCase();
-//     }
-//     return choice;
-// }
 
+function clearGame() {
+    const nodeList = document.querySelectorAll(".sc");
+    nodeList.forEach(score => {
+        score.textContent = '0';
+    });
+}
 
-// function used to simulate the computer choice
 function getComputerChoice() {
     const choices = ["rock", "paper", "scissors"];
     const randomIndex = Math.floor(Math.random() * choices.length);
     return choices[randomIndex];
 }
-
-// Main playing function, it simulates the game -> no longer needed, we rely on listeners
-// function playGame() {
-//     let humanScore = 0;
-//     let computerScore = 0;
-//     for (let i = 0; i < 5; i++) {
-//         if (playRound(getHumanChoice(), getComputerChoice())) {
-//             ++ humanScore;
-//         } else ++ computerScore;
-//     }
-//     if (humanScore > computerScore) {
-//         console.log("Congratulations, you won!");
-//     } else {
-//         if (humanScore == computerScore) {
-//             console.log("We have a tie! Nobody won.");
-//         } else {
-//             console.log(`Uff, you lost! Your score is ${humanScore}.`);
-//         }
-//     }
-// }
-
+ 
+attachListeners();
 
